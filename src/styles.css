@@ -1,3 +1,14 @@
+.noteDate {
+  font-size: 13px;
+  margin-left: 12em;
+  color: #808080;
+  align-items: center;
+  width: 100%;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+}
 body {
   font-family: sans-serif;
   display: flex;
@@ -5,13 +16,6 @@ body {
   align-items: center;
   width: 100%;
   margin: 1px;
-}
-.noteDate {
-  font-size: 13px;
-  margin-left: 12em;
-  color: #808080;
-  align-items: center;
-  width: 100%;
 }
 .done {
   color: green;
