@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Parcel Sandbox</title>
+    <title>Tra ngày nghỉ SongLamPack</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/styles.dd855970.css">
   <script src="/styles.dd855970.js"></script></head>
 
   <body>
-    <h1 class="tieude">Tra cứu</h1>
+    <h1 class="tieude">TRA THÔNG TIN ĐĂNG KÝ NGHỈ</h1>
     <div>
-      <input class="inputbox" type="text" id="myid" placeholder="Mã nhân viên (SLxxxx)" value="SL02263">
-      <button id="btn">check</button>
-      <br>
-      <input class="inputbox" id="ngay" placeholder="Ngày" size="2" maxlength="2" type="number" min="1" max="31" value="25">
-      <input class="inputbox" id="thang" placeholder="Tháng" size="2" maxlength="2" type="number" min="1" max="31" value="5">
-      <input class="inputbox" id="nam" placeholder="Năm" size="4" maxlength="4" type="number" min="2023" max="2999" value="2023">
-      <input type="date">
+      <label class="noteDate">Xem từ ngày</label><br>
+      <input class="inputbox" type="text" id="myid" placeholder="Mã nhân viên" size="10">
+      <input type="date" id="mydate" class="inputbox">
+      <button id="btn">Xem</button>
     </div>
     <div id="result"></div>
     <div class="modal"> <h2>Đang chạy...</h2></div>
