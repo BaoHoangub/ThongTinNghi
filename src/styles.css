@@ -5,7 +5,10 @@
   align-items: center;
   width: 100%;
 }
-
+.logo {
+  width: 45px;
+  height: 45px;
+}
 body {
   font-family: sans-serif;
   display: flex;
