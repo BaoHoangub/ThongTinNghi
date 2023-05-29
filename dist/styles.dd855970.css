@@ -3,6 +3,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  margin: 1px;
+}
+.noteDate {
+  font-size: 13px;
+  margin-left: 12em;
+  color: #808080;
+  align-items: center;
+  width: 100%;
 }
 .done {
   color: green;
@@ -18,6 +27,7 @@ body {
   gap: 20px;
 }
 .tieude {
+  margin-bottom: 3px;
   font-size: 20px;
   color: blue;
   text-align: center;
@@ -27,6 +37,7 @@ body {
   font-size: 16px;
   text-align: center;
 }
+
 /* .render {
   border: 1px;
   border-style: solid;
