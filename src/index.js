@@ -1,4 +1,3 @@
-import "./styles.css";
 
 const btn = document.getElementById("btn");
 const nameInput = document.getElementById("myid");

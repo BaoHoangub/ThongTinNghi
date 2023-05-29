@@ -117,57 +117,62 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/index.js":[function(require,module,exports) {
-var btn = document.getElementById("btn");
-var nameInput = document.getElementById("myid");
-var ngayInput = document.getElementById("ngay");
-var thangInput = document.getElementById("thang");
-var namInput = document.getElementById("nam");
-var resultEle = document.getElementById("result");
-var modal = document.querySelector(".modal");
-function render(data) {
-  var innerHtml = "";
-  for (var i = 1; i < data.length; i++) {
-    innerHtml += "\n    <div class=\"render\">\n        <h2 class =\"".concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\"> ").concat(data[i].result === 1 ? "ĐƯỢC DUYỆT" : data[i].result === -1 ? "KHÔNG ĐƯỢC DUYỆT" : "ĐANG CHỜ", " </h2>\n        <p>").concat(data[0].id, ": ").concat(data[i].id, "</p>\n        <p>").concat(data[0].name, ": ").concat(data[i].checkID, "</p>\n        <p>").concat(data[0].dateFrom, ": ").concat(data[i].dateFrom, "</p>\n        <p>").concat(data[0].dateTo, ": ").concat(data[i].dateTo, "</p>\n        <p>").concat(data[0].mode, ": ").concat(data[i].mode, "</p>\n        <p>").concat(data[0].timeFrom, ": ").concat(data[i].timeFrom, "</p>\n        <p>").concat(data[0].timeTo, ": ").concat(data[i].timeTo, "</p>\n        <p>").concat(data[0].note, ": ").concat(data[i].note, "</p>\n        <p>").concat(data[0].numberOfDays, ": ").concat(data[i].numberOfDays, "</p>\n        <p class=\"").concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\">").concat(data[0].management1, ": ").concat(data[i].management1, "</p>\n        <p class=\"").concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\"> ").concat(data[i].status1, "</p>\n        <p class=\"").concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\">").concat(data[0].management2, ": ").concat(data[i].management2, "</p>\n        <p class=\"").concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\"> ").concat(data[i].status2, "</p>\n    </div>\n    <br>\n    <hr />\n    ");
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
-  console.log(innerHtml);
-  resultEle.innerHTML = innerHtml;
+  return bundleURL;
 }
-var search = function search(e) {
-  e.preventDefault();
-  var name = nameInput.value;
-  var date = new Date(+namInput.value, +thangInput.value, +ngayInput.value);
-  var idate = "".concat(date.getFullYear()).concat(date.getMonth()).concat(date.getDate());
-  var URL = "https://script.google.com/macros/s/AKfycbz2NqrJI1NbV_kuG0qxbevVYKvMFp39LCj_RHjSxh43c88cjPKZ7bi0XQeFOQPSeyyF/exec";
-  var submitData = {
-    type: "check",
-    data: {
-      name: name,
-      idate: idate
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+    if (matches) {
+      return getBaseURL(matches[0]);
     }
+  }
+  return '/';
+}
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+function updateLink(link) {
+  var newLink = link.cloneNode();
+  newLink.onload = function () {
+    link.remove();
   };
-  modal.classList.add("display");
-  console.log(submitData);
-  fetch(URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8"
-    },
-    body: JSON.stringify(submitData) // p data type must match "Content-Type" header
-  }).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    console.log(data);
-    modal.classList.remove("display");
-    render(data);
-  }).catch(function (error) {
-    console.error("Error:", error);
-    modal.classList.remove("display");
-    alert("Có lỗi xảy ra, hãy thử lại");
-  });
-};
-btn.addEventListener("click", search);
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+var cssTimeout = null;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+    cssTimeout = null;
+  }, 50);
+}
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/styles.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -336,5 +341,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
-//# sourceMappingURL=/src.a2b27638.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/styles.dd855970.js.map

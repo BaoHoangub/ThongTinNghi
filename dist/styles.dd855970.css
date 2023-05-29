@@ -1,0 +1,50 @@
+body {
+  font-family: sans-serif;
+}
+.done {
+  color: green;
+}
+.fal {
+  color: red;
+}
+.wait {
+  color: chocolate;
+}
+.item {
+  display: flex;
+  gap: 20px;
+}
+.tieude {
+  color: blue;
+}
+.inputbox {
+  font-size: 16px;
+  text-align: center;
+}
+p {
+  margin-top: 2px;
+}
+
+/* modal */
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-color: beige;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  display: none;
+}
+
+.display {
+  display: flex;
+}
+
+
+/*# sourceMappingURL=/styles.dd855970.css.map */
