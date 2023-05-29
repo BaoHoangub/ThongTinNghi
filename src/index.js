@@ -6,6 +6,7 @@ const ngayInput = document.getElementById("ngay");
 const thangInput = document.getElementById("thang");
 const namInput = document.getElementById("nam");
 const resultEle = document.getElementById("result");
+const modal = document.querySelector(".modal");
 
 function render(data) {
   var innerHtml = "";
@@ -62,26 +63,29 @@ const search = (e) => {
     type: "check",
     data: {
       name,
-      idate
-    }
+      idate,
+    },
   };
+  modal.classList.add("display");
   console.log(submitData);
   fetch(URL, {
     method: "POST",
     headers: {
-      "Content-Type": "text/plain;charset=utf-8"
+      "Content-Type": "text/plain;charset=utf-8",
     },
-    body: JSON.stringify(submitData) // p data type must match "Content-Type" header
+    body: JSON.stringify(submitData), // p data type must match "Content-Type" header
   })
     .then((response) => {
       return response.json();
     })
     .then((data) => {
       console.log(data);
+      modal.classList.remove("display");
       render(data);
     })
     .catch((error) => {
       console.error("Error:", error);
+      modal.classList.remove("display");
       alert("Có lỗi xảy ra, hãy thử lại");
     });
 };
