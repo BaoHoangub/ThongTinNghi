@@ -1,0 +1,26 @@
+body {
+  font-family: sans-serif;
+}
+.done {
+  color: green;
+}
+.fal {
+  color: red;
+}
+.wait {
+  color: chocolate;
+}
+.item {
+  display: flex;
+  gap: 20px;
+}
+.tieude {
+  color: blue;
+}
+.inputbox {
+  font-size: 16px;
+  text-align: center;
+}
+p {
+  margin-top: 2px;
+}
