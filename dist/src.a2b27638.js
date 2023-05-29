@@ -120,25 +120,22 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"src/index.js":[function(require,module,exports) {
 var btn = document.getElementById("btn");
 var nameInput = document.getElementById("myid");
-var ngayInput = document.getElementById("ngay");
-var thangInput = document.getElementById("thang");
-var namInput = document.getElementById("nam");
+var dateInput = document.getElementById("mydate");
 var resultEle = document.getElementById("result");
 var modal = document.querySelector(".modal");
 function render(data) {
   var innerHtml = "";
   for (var i = 1; i < data.length; i++) {
-    innerHtml += "\n    <div class=\"render\">\n        <h2 class =\"".concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\"> ").concat(data[i].result === 1 ? "ĐƯỢC DUYỆT" : data[i].result === -1 ? "KHÔNG ĐƯỢC DUYỆT" : "ĐANG CHỜ", " </h2>\n        <p>").concat(data[0].id, ": ").concat(data[i].id, "</p>\n        <p>").concat(data[0].name, ": ").concat(data[i].checkID, "</p>\n        <p>").concat(data[0].dateFrom, ": ").concat(data[i].dateFrom, "</p>\n        <p>").concat(data[0].dateTo, ": ").concat(data[i].dateTo, "</p>\n        <p>").concat(data[0].mode, ": ").concat(data[i].mode, "</p>\n        <p>").concat(data[0].timeFrom, ": ").concat(data[i].timeFrom, "</p>\n        <p>").concat(data[0].timeTo, ": ").concat(data[i].timeTo, "</p>\n        <p>").concat(data[0].note, ": ").concat(data[i].note, "</p>\n        <p>").concat(data[0].numberOfDays, ": ").concat(data[i].numberOfDays, "</p>\n        <p class=\"").concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\">").concat(data[0].management1, ": ").concat(data[i].management1, "</p>\n        <p class=\"").concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\"> ").concat(data[i].status1, "</p>\n        <p class=\"").concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\">").concat(data[0].management2, ": ").concat(data[i].management2, "</p>\n        <p class=\"").concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\"> ").concat(data[i].status2, "</p>\n    </div>\n    <br>\n    <hr />\n    ");
+    innerHtml += "\n    <div class=\"render\">\n        <h2 class =\"".concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\"> ").concat(data[i].result === 1 ? "ĐƯỢC DUYỆT" : data[i].result === -1 ? "KHÔNG ĐƯỢC DUYỆT" : "ĐANG CHỜ", " </h2>\n        <p>").concat(data[0].id, ": ").concat(data[i].id, "</p>\n        <p>").concat(data[0].name, ": ").concat(data[i].checkID, "</p>\n        <p>").concat(data[0].dateFrom, ": ").concat(data[i].dateFrom, "</p>\n        <p>").concat(data[0].dateTo, ": ").concat(data[i].dateTo, "</p>\n        <p>").concat(data[0].numberOfDays, ": ").concat(data[i].numberOfDays, "</p>\n        <p>").concat(data[0].mode, ": ").concat(data[i].mode, "</p>\n        <p>").concat(data[0].timeFrom, ": ").concat(data[i].timeFrom, "</p>\n        <p>").concat(data[0].timeTo, ": ").concat(data[i].timeTo, "</p>\n        <p>").concat(data[0].note, ": ").concat(data[i].note, "</p>\n        <p class=\"").concat(data[i].status1 == "Duyệt" ? "done" : data[i].status1 == "Không" ? "fal" : "wait", "\">").concat(data[0].management1, ": ").concat(data[i].management1, " _").concat(data[i].status1, "</p>\n        <p class=\"").concat(data[i].status2 == "Duyệt" ? "done" : data[i].status2 == "Không" ? "fal" : "wait", "\">").concat(data[0].management2, ": ").concat(data[i].management2, " _").concat(data[i].status2, "</p>\n    </div>\n    <br>\n    <hr />\n    ");
   }
-  console.log(innerHtml);
   resultEle.innerHTML = innerHtml;
 }
 var search = function search(e) {
   e.preventDefault();
   var name = nameInput.value;
-  var date = new Date(+namInput.value, +thangInput.value, +ngayInput.value);
-  var idate = "".concat(date.getFullYear()).concat(date.getMonth()).concat(date.getDate());
-  var URL = "https://script.google.com/macros/s/AKfycbz2NqrJI1NbV_kuG0qxbevVYKvMFp39LCj_RHjSxh43c88cjPKZ7bi0XQeFOQPSeyyF/exec";
+  var date = dateInput.value; // new Date(+namInput.value, +thangInput.value, +ngayInput.value);
+  var idate = parseInt(date.split("-").join(""));
+  var URL = "https://script.google.com/macros/s/AKfycbz7Aq3Ktm4xrnuXyuI-_3h12_8SbeiK2m9QVUeSolqc8tbiJ9kjjz5YXL-IcjO_Cv4E/exec";
   var submitData = {
     type: "check",
     data: {
@@ -163,7 +160,7 @@ var search = function search(e) {
   }).catch(function (error) {
     console.error("Error:", error);
     modal.classList.remove("display");
-    alert("Có lỗi xảy ra, hãy thử lại");
+    alert("không có kết quả nào, hãy kiểm tra thông tin tra cứu và thử lại");
   });
 };
 btn.addEventListener("click", search);
@@ -192,7 +189,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41917" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45915" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

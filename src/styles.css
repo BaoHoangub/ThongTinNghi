@@ -1,5 +1,8 @@
 body {
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .done {
   color: green;
@@ -15,14 +18,30 @@ body {
   gap: 20px;
 }
 .tieude {
+  font-size: 20px;
   color: blue;
+  text-align: center;
+  width: 100%;
 }
 .inputbox {
   font-size: 16px;
   text-align: center;
 }
+/* .render {
+  border: 1px;
+  border-style: solid;
+  border-width: thin;
+  border-color: #008080;
+} */
 p {
   margin-top: 2px;
+  margin-bottom: 2px;
+  width: 100%;
+}
+button {
+  font-size: 16px;
+  background-color: SeaGreen;
+  color: aliceblue;
 }
 
 /* modal */
