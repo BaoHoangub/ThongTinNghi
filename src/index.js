@@ -18,7 +18,7 @@ function render(data) {
         ? "KHÔNG ĐƯỢC DUYỆT"
         : "ĐANG CHỜ"
     } </h2>
-        <p>${data[0].id}: ${data[i].id}</p>
+        <p>${data[0].id}: ${data[i].id.toUpperCase()}</p>
         <p>${data[0].name}: ${data[i].checkID}</p>
         <p>${data[0].dateFrom}: ${data[i].dateFrom}</p>
         <p>${data[0].dateTo}: ${data[i].dateTo}</p>
@@ -59,7 +59,7 @@ const search = (e) => {
   var date = dateInput.value; // new Date(+namInput.value, +thangInput.value, +ngayInput.value);
   var idate = parseInt(date.split("-").join(""));
   const URL =
-    "https://script.google.com/macros/s/AKfycbz7Aq3Ktm4xrnuXyuI-_3h12_8SbeiK2m9QVUeSolqc8tbiJ9kjjz5YXL-IcjO_Cv4E/exec";
+    "https://script.google.com/macros/s/AKfycby58yoD8l9Fo23sH30bkT-HNJZwEqMa4dbp1LdJqUQw9lqlZ0NfGufyRXEYU7dfS4d5Yw/exec";
   let submitData = {
     type: "check",
     data: {

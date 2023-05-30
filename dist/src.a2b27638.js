@@ -126,7 +126,7 @@ var modal = document.querySelector(".modal");
 function render(data) {
   var innerHtml = "";
   for (var i = 1; i < data.length; i++) {
-    innerHtml += "\n    <div class=\"render\">\n        <h2 class =\"".concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\"> ").concat(data[i].result === 1 ? "ĐƯỢC DUYỆT" : data[i].result === -1 ? "KHÔNG ĐƯỢC DUYỆT" : "ĐANG CHỜ", " </h2>\n        <p>").concat(data[0].id, ": ").concat(data[i].id, "</p>\n        <p>").concat(data[0].name, ": ").concat(data[i].checkID, "</p>\n        <p>").concat(data[0].dateFrom, ": ").concat(data[i].dateFrom, "</p>\n        <p>").concat(data[0].dateTo, ": ").concat(data[i].dateTo, "</p>\n        <p>").concat(data[0].numberOfDays, ": ").concat(data[i].numberOfDays, "</p>\n        <p>").concat(data[0].mode, ": ").concat(data[i].mode, "</p>\n        <p>").concat(data[0].timeFrom, ": ").concat(data[i].timeFrom, "</p>\n        <p>").concat(data[0].timeTo, ": ").concat(data[i].timeTo, "</p>\n        <p>").concat(data[0].note, ": ").concat(data[i].note, "</p>\n        <p class=\"").concat(data[i].status1 == "Duyệt" ? "done" : data[i].status1 == "Không" ? "fal" : "wait", "\">").concat(data[0].management1, ": ").concat(data[i].management1, " _").concat(data[i].status1, "</p>\n        <p class=\"").concat(data[i].status2 == "Duyệt" ? "done" : data[i].status2 == "Không" ? "fal" : "wait", "\">").concat(data[0].management2, ": ").concat(data[i].management2, " _").concat(data[i].status2, "</p>\n    </div>\n    <br>\n    <hr />\n    ");
+    innerHtml += "\n    <div class=\"render\">\n        <h2 class =\"".concat(data[i].result === 1 ? "done" : data[i].result === -1 ? "fal" : "wait", "\"> ").concat(data[i].result === 1 ? "ĐƯỢC DUYỆT" : data[i].result === -1 ? "KHÔNG ĐƯỢC DUYỆT" : "ĐANG CHỜ", " </h2>\n        <p>").concat(data[0].id, ": ").concat(data[i].id.toUpperCase(), "</p>\n        <p>").concat(data[0].name, ": ").concat(data[i].checkID, "</p>\n        <p>").concat(data[0].dateFrom, ": ").concat(data[i].dateFrom, "</p>\n        <p>").concat(data[0].dateTo, ": ").concat(data[i].dateTo, "</p>\n        <p>").concat(data[0].numberOfDays, ": ").concat(data[i].numberOfDays, "</p>\n        <p>").concat(data[0].mode, ": ").concat(data[i].mode, "</p>\n        <p>").concat(data[0].timeFrom, ": ").concat(data[i].timeFrom, "</p>\n        <p>").concat(data[0].timeTo, ": ").concat(data[i].timeTo, "</p>\n        <p>").concat(data[0].note, ": ").concat(data[i].note, "</p>\n        <p class=\"").concat(data[i].status1 == "Duyệt" ? "done" : data[i].status1 == "Không" ? "fal" : "wait", "\">").concat(data[0].management1, ": ").concat(data[i].management1, " _").concat(data[i].status1, "</p>\n        <p class=\"").concat(data[i].status2 == "Duyệt" ? "done" : data[i].status2 == "Không" ? "fal" : "wait", "\">").concat(data[0].management2, ": ").concat(data[i].management2, " _").concat(data[i].status2, "</p>\n    </div>\n    <br>\n    <hr />\n    ");
   }
   resultEle.innerHTML = innerHtml;
 }
@@ -135,7 +135,7 @@ var search = function search(e) {
   var name = nameInput.value;
   var date = dateInput.value; // new Date(+namInput.value, +thangInput.value, +ngayInput.value);
   var idate = parseInt(date.split("-").join(""));
-  var URL = "https://script.google.com/macros/s/AKfycbz7Aq3Ktm4xrnuXyuI-_3h12_8SbeiK2m9QVUeSolqc8tbiJ9kjjz5YXL-IcjO_Cv4E/exec";
+  var URL = "https://script.google.com/macros/s/AKfycby58yoD8l9Fo23sH30bkT-HNJZwEqMa4dbp1LdJqUQw9lqlZ0NfGufyRXEYU7dfS4d5Yw/exec";
   var submitData = {
     type: "check",
     data: {
@@ -160,6 +160,7 @@ var search = function search(e) {
   }).catch(function (error) {
     console.error("Error:", error);
     modal.classList.remove("display");
+    resultEle.innerHTML = "\n      <div class=\"render\">\n      <p>Kh\xF4ng c\xF3 k\u1EBFt qu\u1EA3 n\xE0o ph\xF9 h\u1EE3p!</p>\n      </div>\n      ";
     alert("không có kết quả nào, hãy kiểm tra thông tin tra cứu và thử lại");
   });
 };
@@ -189,7 +190,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45915" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39971" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
