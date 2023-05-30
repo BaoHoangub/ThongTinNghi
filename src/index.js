@@ -87,6 +87,11 @@ const search = (e) => {
     .catch((error) => {
       console.error("Error:", error);
       modal.classList.remove("display");
+      resultEle.innerHTML = `
+      <div class="render">
+      <p>Không có kết quả nào phù hợp!</p>
+      </div>
+      `
       alert("không có kết quả nào, hãy kiểm tra thông tin tra cứu và thử lại");
     });
 };
